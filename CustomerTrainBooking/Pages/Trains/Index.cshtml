@@ -1,0 +1,75 @@
+﻿@page
+@model CustomerTrainBooking.Pages.Trains.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+
+<form>
+    <label for="Filter">Filter:</label>
+    <select id="SearchStringid" name="SearchString">
+
+        @foreach (var item in Model.DestinationList)
+            {
+            if (item == Model.DestinationSearch)
+                { 
+                    <option value=@item selected>  @item </option>
+                }
+                else
+                {
+                    <option value=@item> @item </option>
+                }  
+            }
+        }
+    </select>
+    <input type="submit" value="Search" />
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Train[0].DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Train[0].Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Train[0].SeatNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Train[0].SeatType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Train[0].Available)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Train) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Available)
+            </td>
+        </tr>
+}
+    </tbody>
+
+</table>

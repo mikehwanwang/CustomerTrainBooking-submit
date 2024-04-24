@@ -1,0 +1,113 @@
+﻿@page
+@model CustomerTrainBooking.Pages.CustomerTrains.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>CustomerTrain</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form >
+            <label for="Customer Name">Customer:   </label>
+            <select id="SearchCustomerid" name="SearchCustomer">
+                @foreach (var item in Model.CustomerNameList)
+                {
+                    if (item == Model.CustomerSearch)
+                    {
+                        <option value=@item selected> @item </option>
+                    }
+                    else
+                    {
+                        <option value=@item> @item </option>
+                    }
+                }
+            </select> <br />
+            <label for="Search Destination">Train Info:</label>
+            <select id="SearchSeatTypeid" name="SearchDestination">
+                @foreach (var item in Model.TimeDestinationList)
+                {
+                    if (item == Model.TimeDestinationSearch)
+                    {
+                        <option value=@item selected> @item </option>
+                    }
+                    else
+                    {
+                        <option value=@item> @item </option>
+                    }
+
+                }
+            </select><br />
+            <label for="Search SeatTypeid">Seat Type: </label>
+            <select id="SearchSeatType" name="SearchSeatType">
+                @if ((Model.SeatTypeSearch == null))
+                {
+                    @foreach (var item in Model.SeatTypeList)
+                    {
+                        <option value=@item selected> @item </option>
+                    }
+                }
+                else 
+                {
+                     @foreach (var item in Model.SeatTypeList)
+                     {
+                            if (item == Model.SeatTypeSearch)
+                            {
+                            <option value=@item selected> @item </option>
+                            }
+                            else
+                            {
+                            <option value=@item> @item </option>
+                            }
+                        }
+                     }
+                 } 
+            </select><br />
+
+            <input type="submit" value="Search" /><br />
+
+        </form> <br />
+       <form method="post">
+
+            <label for="SeatNumber">Seat Number: </label><br />
+            <select id="SearchSeatNbr" name="SearchSeatNumber" multiple>
+                @if ((Model.SeatNumberList == null))
+                {
+                    <option value=>...</option>
+                   Model.SeatNumberList = new List<String> ();
+                }
+                else { 
+                    @foreach (var item in Model.SeatNumberList)
+                    {
+                        for (int x = 0; x < Model.SeatNumberSearch.Count(); x++)
+                        {
+                            if (item == Model.SeatNumberSearch[x])
+                            {
+                                <option value=@item selected> @item </option>
+                                break;
+                            }
+                        }
+                        <option value=@item> @item </option>
+                    }
+                } 
+            </select><br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+  
+
+
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

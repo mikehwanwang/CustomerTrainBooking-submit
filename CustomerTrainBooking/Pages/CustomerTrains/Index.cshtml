@@ -1,0 +1,62 @@
+﻿@page
+@model CustomerTrainBooking.Pages.CustomerTrains.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerTrain[0].Customer.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerTrain[0].Customer.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerTrain[0].Train.DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerTrain[0].Train.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerTrain[0].Train.SeatNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerTrain[0].Train.SeatType)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CustomerTrain) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Customer.FirstName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Customer.LastName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Train.DepartureTime)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Train.Destination)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Train.SeatNumber)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Train.SeatType)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
